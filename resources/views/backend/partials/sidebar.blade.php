@@ -74,9 +74,21 @@
                     </div>
                 </div>
 
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i
+                            class="far fa-file-alt me-2"></i>Fixed Deposit</a>
+                    <div class="dropdown-menu bg-transparent border-0">
+                        <a href="{{ url('admin/fixed-deposit/Pending') }}" class="dropdown-item">Pending</a>
+                        <a href="{{ url('admin/fixed-deposit/Active') }}" class="dropdown-item">Active</a>
+                        <a href="{{ url('admin/fixed-deposit/Hold') }}" class="dropdown-item">Hold</a>
+                        <a href="{{ url('admin/fixed-deposit/Closed') }}" class="dropdown-item">Closed</a>
+                    </div>
+                </div>
+
                 <a href="{{ route('admin.products.index') }}" class="nav-item nav-link"><i
                         class="fa fa-keyboard me-2"></i>Products</a>
-                <a href="{{ url('order/dashboard') }}" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Order
+                <a href="{{ url('order/dashboard') }}" class="nav-item nav-link"><i
+                        class="fa fa-table me-2"></i>Order
                     Panel</a>
                 <a href="chart.html" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i>Charts</a>
 

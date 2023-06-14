@@ -183,6 +183,12 @@ class BasicinfoController extends Controller
         }else{
             $webinfo->ten_gen=0;
         }
+        if(isset($request->fixed_deposit_interest)){
+            $webinfo->fixed_deposit_interest=$request->fixed_deposit_interest;
+        }else{
+            $webinfo->fixed_deposit_interest=0;
+        }
+
         $webinfo->update();
         return redirect()->back()->with('message','Referal & Generation updated successfully');
     }

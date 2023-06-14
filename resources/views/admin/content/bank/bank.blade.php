@@ -9,57 +9,53 @@
                 <nav>
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ url('/admindashboard') }}">Home</a></li>
-                        <li class="breadcrumb-item active">Payment</li>
+                        <li class="breadcrumb-item active">Bank</li>
                     </ol>
                 </nav>
             </div>
             <div class="col-6" style="text-align: right">
                 <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
-                    data-bs-target="#mainPayment"><span style="font-weight: bold;">+</span> Add New Payment</button>
+                    data-bs-target="#mainBank"><span style="font-weight: bold;">+</span> Add New Bank</button>
             </div>
         </div><!-- End Page Title -->
 
         {{-- //popup modal for create user --}}
-        <div class="modal fade" id="mainPayment" tabindex="-1" data-bs-backdrop="false">
+        <div class="modal fade" id="mainBank" tabindex="-1" data-bs-backdrop="false">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Add New Payment</h5>
+                        <h5 class="modal-title">Add New Bank</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
 
-                        <form name="form" id="AddPayment" enctype="multipart/form-data">
+                        <form name="form" id="AddBank" enctype="multipart/form-data">
                             @csrf
                             <div class="successSMS"></div>
                             <div class="form-group mb-3">
-                                <label for="menuName" class="control-label mt-2">Payment Type Name</label>
-                                <div class="">
-                                    <select class="form-control" name="payment_type_id" id="payment_type_id" required>
-                                        <option value="">Select a payment type</option>
-                                        @forelse ($paymenttypes as $paymenttype)
-                                            <option value="{{ $paymenttype->id }}">{{ $paymenttype->paymentTypeName }}
-                                            </option>
-                                        @empty
-                                        @endforelse
-                                    </select>
+                                <label for="websiteTitle" class="control-label">Bank Name</label>
+                                <div class="webtitle">
+                                    <input type="text" class="form-control" name="bank_name" id="bank_name" required>
                                 </div>
                             </div>
 
                             <div class="form-group pb-3">
-                                <label for="websiteTitle" class="control-label">Payment Number</label>
+                                <label for="websiteTitle" class="control-label">Bank Account Number</label>
                                 <div class="webtitle">
-                                    <input type="text" class="form-control" name="paymentNumber" id="paymentNumber"
+                                    <input type="text" class="form-control" name="account_number" id="account_number"
                                         required>
-                                    <span
-                                        class="text-danger">{{ $errors->has('paymentNumber') ? $errors->first('paymentNumber') : '' }}</span>
                                 </div>
                             </div>
-
+                            <div class="form-group pb-3">
+                                <label for="websiteTitle" class="control-label">Branch (if available)</label>
+                                <div class="webtitle">
+                                    <input type="text" class="form-control" name="branch" id="branch">
+                                </div>
+                            </div>
                             <div class="form-group" style="text-align: right">
                                 <div class="submitBtnSCourse">
                                     <button type="submit" name="btn"
-                                        class="btn btn-primary AddPaymentBtn btn-block">Save</button>
+                                        class="btn btn-primary AddBankBtn btn-block">Save</button>
                                 </div>
                             </div>
                         </form>
@@ -88,13 +84,14 @@
                             @endif
                             <!-- Table with stripped rows -->
                             <div class="table-responsive">
-                                <table class="table table-centered table-borderless table-hover mb-0" id="paymentinfotbl"
+                                <table class="table table-centered table-borderless table-hover mb-0" id="bankinfotbl"
                                     width="100%">
                                     <thead class="thead-light">
                                         <tr>
                                             <th>ID</th>
-                                            <th>Payment Type Name</th>
-                                            <th>Payment Number</th>
+                                            <th>Bank Name</th>
+                                            <th>Bank Account</th>
+                                            <th>Branch</th>
                                             <th>Status</th>
                                             <th>Action</th>
                                         </tr>
@@ -112,40 +109,37 @@
         </section>
 
         {{-- //popup modal for edit user --}}
-        <div class="modal fade" id="editmainPayments" tabindex="-1" data-bs-backdrop="false">
+        <div class="modal fade" id="editmainBanks" tabindex="-1" data-bs-backdrop="false">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Edit Payment</h5>
+                        <h5 class="modal-title">Edit Bank</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
 
-                        <form name="form" id="EditPayment" enctype="multipart/form-data">
+                        <form name="form" id="EditBank" enctype="multipart/form-data">
                             @csrf
                             <div class="successSMS"></div>
 
                             <div class="form-group mb-3">
-                                <label for="menuName" class="control-label mt-2">Payment Type Name</label>
-                                <div class="">
-                                    <select class="form-control" name="payment_type_id" id="editpayment_type_id" required>
-                                        <option value="">Select a payment type</option>
-                                        @forelse ($paymenttypes as $paymenttype)
-                                            <option value="{{ $paymenttype->id }}">{{ $paymenttype->paymentTypeName }}
-                                            </option>
-                                        @empty
-                                        @endforelse
-                                    </select>
+                                <label for="websiteTitle" class="control-label">Bank Name</label>
+                                <div class="webtitle">
+                                    <input type="text" class="form-control" name="bank_name" id="bank_name" required>
                                 </div>
                             </div>
 
                             <div class="form-group pb-3">
-                                <label for="websiteTitle" class="control-label">Payment Number</label>
+                                <label for="websiteTitle" class="control-label">Bank Account Number</label>
                                 <div class="webtitle">
-                                    <input type="text" class="form-control" name="paymentNumber"
-                                        id="editpaymentNumber" required>
-                                    <span
-                                        class="text-danger">{{ $errors->has('paymentNumber') ? $errors->first('paymentNumber') : '' }}</span>
+                                    <input type="text" class="form-control" name="account_number" id="account_number"
+                                        required>
+                                </div>
+                            </div>
+                            <div class="form-group pb-3">
+                                <label for="websiteTitle" class="control-label">Branch (if available)</label>
+                                <div class="webtitle">
+                                    <input type="text" class="form-control" name="branch" id="branch">
                                 </div>
                             </div>
                             <input type="text" name="id" id="idhidden" hidden>
@@ -169,31 +163,34 @@
     <script>
         $(document).ready(function() {
 
-            var paymentinfotbl = $('#paymentinfotbl').DataTable({
+            var bankinfotbl = $('#bankinfotbl').DataTable({
                 order: [
                     [0, 'desc']
                 ],
                 processing: true,
                 serverSide: true,
-                ajax: '{!! route('payment.info') !!}',
+                ajax: '{!! route('bank.info') !!}',
                 columns: [{
                         data: 'id'
                     },
                     {
-                        data: 'paymenttypes.paymentTypeName'
+                        data: 'bank_name'
                     },
                     {
-                        data: 'paymentNumber'
+                        data: 'account_number'
+                    },
+                    {
+                        data: 'branch'
                     },
                     {
                         "data": null,
                         render: function(data) {
 
                             if (data.status === 'Active') {
-                                return '<button type="button" class="btn btn-success btn-sm btn-status" data-status="Inactive" id="statusBtnPayment" data-id="' +
+                                return '<button type="button" class="btn btn-success btn-sm btn-status" data-status="Inactive" id="statusBtnBank" data-id="' +
                                     data.id + '">Active</button>';
                             } else {
-                                return '<button type="button" class="btn btn-warning btn-sm btn-status" data-status="Active" id="statusBtnPayment" data-id="' +
+                                return '<button type="button" class="btn btn-warning btn-sm btn-status" data-status="Active" id="statusBtnBank" data-id="' +
                                     data.id + '" >Inactive</button>';
                             }
 
@@ -213,19 +210,19 @@
 
             //add user
 
-            $('#AddPayment').submit(function(e) {
+            $('#AddBank').submit(function(e) {
                 e.preventDefault();
 
                 $.ajax({
                     type: 'POST',
-                    uploadUrl: '{{ route('payments.store') }}',
+                    uploadUrl: '{{ route('banks.store') }}',
                     processData: false,
                     contentType: false,
                     data: new FormData(this),
 
                     success: function(data) {
-                        $('#paymentNumber').val('');
-                        $('#payment_type_id').val('');
+                        $('#bankNumber').val('');
+                        $('#bank_type_id').val('');
 
                         swal({
                             title: "Success!",
@@ -236,7 +233,7 @@
                             confirmButtonText: "Yes",
                             cancelButtonText: "No",
                         });
-                        paymentinfotbl.ajax.reload();
+                        bankinfotbl.ajax.reload();
                     },
                     error: function(error) {
                         console.log('error');
@@ -246,19 +243,19 @@
 
             //edit city
 
-            $(document).on('click', '#editPaymentBtn', function() {
-                let paymentId = $(this).data('id');
+            $(document).on('click', '#editBankBtn', function() {
+                let bankId = $(this).data('id');
 
                 $.ajax({
                     type: 'GET',
-                    url: 'payments/' + paymentId + '/edit',
+                    url: 'banks/' + bankId + '/edit',
 
                     success: function(data) {
-                        $('#EditPayment').find('#editpayment_type_id').val(data
-                            .payment_type_id);
-                        $('#EditPayment').find('#editpaymentNumber').val(data.paymentNumber);
-                        $('#EditPayment').find('#idhidden').val(data.id);
-                        $('#EditPayment').attr('data-id', data.id);
+                        $('#EditBank').find('#bank_name').val(data.bank_name);
+                        $('#EditBank').find('#account_number').val(data.account_number);
+                        $('#EditBank').find('#branch').val(data.branch);
+                        $('#EditBank').find('#idhidden').val(data.id);
+                        $('#EditBank').attr('data-id', data.id);
                     },
                     error: function(error) {
                         console.log('error');
@@ -268,24 +265,26 @@
             });
 
             //update city
-            $('#EditPayment').submit(function(e) {
+            $('#EditBank').submit(function(e) {
                 e.preventDefault();
-                let paymentId = $('#idhidden').val();
+                let bankId = $('#idhidden').val();
 
                 $.ajax({
                     type: 'POST',
-                    url: 'payment/' + paymentId,
+                    url: 'bank/' + bankId,
                     processData: false,
                     contentType: false,
                     data: new FormData(this),
 
                     success: function(data) {
-                        $('#editpayment_type_id').val('');
-                        $('#editpaymentNumber').val('');
+                        $('#EditBank').find('#bank_name').val('');
+                        $('#EditBank').find('#account_number').val('');
+                        $('#EditBank').find('#branch').val('');
+                        $('#EditBank').find('#idhidden').val('');
 
 
                         swal({
-                            title: "Payment update successfully !",
+                            title: "Bank update successfully !",
                             icon: "success",
                             showCancelButton: true,
                             focusConfirm: false,
@@ -293,7 +292,7 @@
                             confirmButtonText: "Yes",
                             cancelButtonText: "No",
                         });
-                        paymentinfotbl.ajax.reload();
+                        bankinfotbl.ajax.reload();
                     },
                     error: function(error) {
                         console.log('error');
@@ -301,55 +300,55 @@
                 });
             });
 
-            //deleteuser
+            // //deleteuser
 
-            $(document).on('click', '#deletePaymentBtn', function() {
-                let paymentId = $(this).data('id');
-                swal({
-                        title: "Are you sure?",
-                        text: "Once deleted, you will not be able to recover this !",
-                        icon: "warning",
-                        buttons: true,
-                        dangerMode: true,
-                    })
-                    .then((willDelete) => {
-                        if (willDelete) {
-                            $.ajax({
-                                type: 'DELETE',
-                                url: 'payments/' + paymentId,
+            // $(document).on('click', '#deleteBankBtn', function() {
+            //     let bankId = $(this).data('id');
+            //     swal({
+            //             title: "Are you sure?",
+            //             text: "Once deleted, you will not be able to recover this !",
+            //             icon: "warning",
+            //             buttons: true,
+            //             dangerMode: true,
+            //         })
+            //         .then((willDelete) => {
+            //             if (willDelete) {
+            //                 $.ajax({
+            //                     type: 'DELETE',
+            //                     url: 'banks/' + bankId,
 
-                                success: function(data) {
-                                    swal("Poof! Your payment has been deleted!", {
-                                        icon: "success",
-                                    });
-                                    paymentinfotbl.ajax.reload();
-                                },
-                                error: function(error) {
-                                    console.log('error');
-                                }
+            //                     success: function(data) {
+            //                         swal("Poof! Your bank has been deleted!", {
+            //                             icon: "success",
+            //                         });
+            //                         bankinfotbl.ajax.reload();
+            //                     },
+            //                     error: function(error) {
+            //                         console.log('error');
+            //                     }
 
-                            });
+            //                 });
 
 
-                        } else {
-                            swal("Your data is safe!");
-                        }
-                    });
+            //             } else {
+            //                 swal("Your data is safe!");
+            //             }
+            //         });
 
-            });
+            // });
 
             //status update
 
-            $(document).on('click', '#statusBtnPayment', function() {
-                let paymentId = $(this).data('id');
-                let paymentStatus = $(this).data('status');
+            $(document).on('click', '#statusBtnBank', function() {
+                let bankId = $(this).data('id');
+                let bankStatus = $(this).data('status');
 
                 $.ajax({
                     type: 'PUT',
-                    url: 'payment/status',
+                    url: 'bank/status',
                     data: {
-                        payment_id: paymentId,
-                        status: paymentStatus,
+                        bank_id: bankId,
+                        status: bankStatus,
                     },
 
                     success: function(data) {
@@ -362,7 +361,7 @@
                             confirmButtonText: "Yes",
                             cancelButtonText: "No",
                         });
-                        paymentinfotbl.ajax.reload();
+                        bankinfotbl.ajax.reload();
                     },
                     error: function(error) {
                         console.log('error');
@@ -370,11 +369,6 @@
 
                 });
             });
-
-
-
-
-
 
 
 

@@ -37,6 +37,8 @@ use App\Http\Controllers\ReportController;
 use App\Http\Controllers\TikitController;
 use App\Http\Controllers\LeadershiprankController;
 use App\Http\Controllers\Backend\RankController;
+use App\Http\Controllers\BankController;
+use App\Http\Controllers\FixeddepositController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -62,6 +64,10 @@ Route::group(['prefix'=>'admin',], function () {
 });
 
 Route::group(['prefix'=>'admin','middleware' => ['auth.admin:admin']], function () {
+
+    // fixed deposit
+    Route::post('fixed-deposit/change-status', [FixeddepositController::class, 'changestatus']);
+    Route::get('fixed-deposit/{status}', [FixeddepositController::class, 'depositByStatus']);
 
     Route::get('supporttikits', [TikitController::class, 'admindex']);
     Route::get('supporttikit/edit/{id}', [TikitController::class, 'edit']);
@@ -291,7 +297,11 @@ Route::group(['middleware' => ['auth.admin:admin']], function () {
     Route::post('payment/{id}', [PaymentController::class, 'update']);
     Route::put('payment/status', [PaymentController::class, 'updatestatus']);
     Route::get('admin/payment', [PaymentController::class, 'paymentdata'])->name('payment.info');
-
+    // Bank
+    Route::resource('banks', BankController::class);
+    Route::post('bank/{id}', [BankController::class, 'update']);
+    Route::put('bank/status', [BankController::class, 'updatestatus']);
+    Route::get('admin/bank', [BankController::class, 'bankdata'])->name('bank.info');
 
         //report section
     Route::get('admin/courier/user/report', [ReportController::class, 'courieruserreport'])->name('courieruserreport');

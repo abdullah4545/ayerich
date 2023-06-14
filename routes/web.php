@@ -8,6 +8,7 @@ use App\Http\Controllers\TikitController;
 use App\Http\Controllers\FoundtransferController;
 use App\Http\Controllers\WithdrewController;
 use App\Http\Controllers\RechargeController;
+use App\Http\Controllers\FixeddepositController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -70,6 +71,10 @@ Route::post('track-now', [WebviewController::class, 'orderTrakingNow']);
 Route::group(['prefix'=>'user','middleware' => ['auth:web']], function () {
     Route::resource('supporttikits', TikitController::class);
     Route::post('replay/tikit/{id}', [TikitController::class, 'replay']);
+    Route::resource('fixeddeposits', FixeddepositController::class);
+    Route::get('fixeddeposit', [FixeddepositController::class, 'fixeddepositdata'])->name('fixeddepositdata');
+    Route::get('get/bankinfo/{id}', [FixeddepositController::class, 'getdata']);
+
     Route::resource('withdrews', WithdrewController::class);
     Route::get('withdrewdata', [WithdrewController::class, 'withdrewdata'])->name('withdrewdata');
     Route::resource('recharges', RechargeController::class);

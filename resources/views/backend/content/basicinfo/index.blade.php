@@ -198,6 +198,12 @@
                                     value="{{ $webinfo->ten_gen }}" id="floatingInput" placeholder="Ten Gen">
                                 <label for="floatingInput">Ten Gen %</label>
                             </div>
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" name="fixed_deposit_interest"
+                                    value="{{ $webinfo->fixed_deposit_interest }}" id="floatingInput"
+                                    placeholder="Ten Gen">
+                                <label for="floatingInput">Fixed Deposit Interest %</label>
+                            </div>
                         </div>
                         <div class="mt-3">
                             <button type="submit" class="btn btn-primary btn-lg w-100">Update</button>

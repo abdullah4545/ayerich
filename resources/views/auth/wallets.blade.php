@@ -135,6 +135,12 @@
     }
 </style>
 
+@php
+    $fxd = App\Models\Fixeddeposit::where('status', 'Active')
+        ->where('user_id', Auth::user()->id)
+        ->first();
+@endphp
+
 <div class="outer-top-xs outer-bottom-xs">
     <div class="container pt-4 mt-4">
         <div class="row">
@@ -175,7 +181,7 @@
                                         <div class="text-right">
                                             <h6 class="m-0 text-dark" style="font-size: 16px;">
                                                 {{ number_format((float) Auth::guard('web')->user()->main_balance, 2, '.', '') }}
-                                                <small style="font-size: 10px;">(points)</small>
+                                                <small style="font-size: 10px;">(tk)</small>
                                             </h6>
                                             <small
                                                 class="text-dark">{{ number_format((float) Auth::guard('web')->user()->main_balance, 2, '.', '') * 0.1 }}%</small>
@@ -207,7 +213,7 @@
                                         <div class="text-right">
                                             <h6 class="m-0 text-dark" style="font-size: 16px;">
                                                 {{ number_format((float) Auth::guard('web')->user()->my_balance, 2, '.', '') }}<small
-                                                    style="font-size: 10px;">(points)</small></h6>
+                                                    style="font-size: 10px;">(tk)</small></h6>
                                             <small
                                                 class="text-dark">{{ number_format((float) Auth::guard('web')->user()->my_balance, 2, '.', '') * 0.1 }}%</small>
                                         </div>
@@ -238,7 +244,7 @@
                                         <div class="text-right">
                                             <h6 class="m-0 text-dark" style="font-size: 16px;">
                                                 {{ number_format((float) Auth::guard('web')->user()->my_income, 2, '.', '') }}<small
-                                                    style="font-size: 10px;">(points)</small></h6>
+                                                    style="font-size: 10px;">(tk)</small></h6>
                                             <small
                                                 class="text-dark">{{ number_format((float) Auth::guard('web')->user()->my_income, 2, '.', '') * 0.1 }}%</small>
                                         </div>
@@ -269,7 +275,7 @@
                                         <div class="text-right">
                                             <h6 class="m-0 text-dark" style="font-size: 16px;">
                                                 {{ number_format((float) Auth::guard('web')->user()->withdrew_balance, 2, '.', '') }}<small
-                                                    style="font-size: 10px;">(points)</small></h6>
+                                                    style="font-size: 10px;">(tk)</small></h6>
                                             <small
                                                 class="text-dark">{{ number_format((float) Auth::guard('web')->user()->withdrew_balance, 2, '.', '') * 0.1 }}%</small>
                                         </div>
@@ -331,7 +337,7 @@
                                         <div class="text-right">
                                             <h6 class="m-0 text-dark" style="font-size: 16px;">
                                                 {{ number_format((float) Auth::guard('web')->user()->referal_bonus, 2, '.', '') }}<small
-                                                    style="font-size: 10px;">(points)</small></h6>
+                                                    style="font-size: 10px;">(tk)</small></h6>
                                             <small
                                                 class="text-dark">{{ number_format((float) Auth::guard('web')->user()->referal_bonus, 2, '.', '') * 0.1 }}%</small>
                                         </div>
@@ -363,7 +369,7 @@
                                         <div class="text-right">
                                             <h6 class="m-0 text-dark" style="font-size: 16px;">
                                                 {{ number_format((float) Auth::guard('web')->user()->generation_bonus, 2, '.', '') }}<small
-                                                    style="font-size: 10px;">(points)</small></h6>
+                                                    style="font-size: 10px;">(tk)</small></h6>
                                             <small
                                                 class="text-dark">{{ number_format((float) Auth::guard('web')->user()->generation_bonus, 2, '.', '') * 0.1 }}%</small>
                                         </div>
@@ -395,7 +401,7 @@
                                         <div class="text-right">
                                             <h6 class="m-0 text-dark" style="font-size: 16px;">
                                                 {{ number_format((float) Auth::guard('web')->user()->global_salse_commission, 2, '.', '') }}<small
-                                                    style="font-size: 10px;">(points)</small></h6>
+                                                    style="font-size: 10px;">(tk)</small></h6>
                                             <small
                                                 class="text-dark">{{ number_format((float) Auth::guard('web')->user()->global_salse_commission, 2, '.', '') * 0.1 }}%</small>
                                         </div>
@@ -426,7 +432,7 @@
                                         <div class="text-right">
                                             <h6 class="m-0 text-dark" style="font-size: 16px;">
                                                 {{ number_format((float) Auth::guard('web')->user()->group_bonus, 2, '.', '') }}<small
-                                                    style="font-size: 10px;">(points)</small></h6>
+                                                    style="font-size: 10px;">(tk)</small></h6>
                                             <small
                                                 class="text-dark">{{ number_format((float) Auth::guard('web')->user()->group_bonus, 2, '.', '') * 0.1 }}%</small>
                                         </div>
@@ -458,7 +464,7 @@
                                         <div class="text-right">
                                             <h6 class="m-0 text-dark" style="font-size: 16px;">
                                                 {{ number_format((float) Auth::guard('web')->user()->leadership_bonus, 2, '.', '') }}<small
-                                                    style="font-size: 10px;">(points)</small></h6>
+                                                    style="font-size: 10px;">(tk)</small></h6>
                                             <small
                                                 class="text-dark">{{ number_format((float) Auth::guard('web')->user()->leadership_bonus, 2, '.', '') * 0.1 }}%</small>
                                         </div>
@@ -490,7 +496,7 @@
                                         <div class="text-right">
                                             <h6 class="m-0 text-dark" style="font-size: 16px;">
                                                 {{ number_format((float) Auth::guard('web')->user()->purchase_bonus, 2, '.', '') }}<small
-                                                    style="font-size: 10px;">(points)</small></h6>
+                                                    style="font-size: 10px;">(tk)</small></h6>
                                             <small
                                                 class="text-dark">{{ number_format((float) Auth::guard('web')->user()->purchase_bonus, 2, '.', '') * 0.1 }}%</small>
                                         </div>
@@ -521,9 +527,88 @@
                                         <div class="text-right">
                                             <h6 class="m-0 text-dark" style="font-size: 16px;">
                                                 {{ number_format((float) Auth::guard('web')->user()->purchase_bonus, 2, '.', '') }}<small
-                                                    style="font-size: 10px;">(points)</small></h6>
+                                                    style="font-size: 10px;">(tk)</small></h6>
                                             <small
                                                 class="text-dark">{{ number_format((float) Auth::guard('web')->user()->purchase_bonus, 2, '.', '') * 0.1 }}%</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-lg-6 p-2 mb-2">
+                            <div class="card">
+                                <div class="card-body" style="padding: 10px;">
+                                    <div class="d-flex" style="justify-content:space-between">
+                                        <div class="d-flex" style="justify-content:space-between">
+                                            <a href="#" class="pr-2" style="margin-top: 0px;">
+                                                <p class="mb-0"
+                                                    style="font-size: 30px;border: none;border-radius: 50%;padding: 6px;width: 70px;margin: 0;margin-right: 10px;padding-left: 8px;">
+                                                    <img src="{{ asset('public/bank.png') }}" style="width: 100%;">
+                                                </p>
+                                            </a>
+                                            <div>
+                                                <h4 class="m-0 text-dark"
+                                                    style="text-transform: uppercase;font-weight: bold;font-size: 16px;">
+                                                    Fixed Deposit</h4>
+                                                <small class="m-0 text-dark">Blance</small>
+                                            </div>
+                                        </div>
+                                        <div class="text-right">
+
+
+                                            @if (isset($fxd))
+                                                <h6 class="m-0 text-dark" style="font-size: 16px;">
+                                                    {{ number_format((float) $fxd->amount, 2, '.', '') }}<small
+                                                        style="font-size: 10px;">(tk)</small></h6>
+                                                <small
+                                                    class="text-dark">{{ number_format((float) $fxd->amount, 2, '.', '') * 0.1 }}%</small>
+                                            @else
+                                                <h6 class="m-0 text-dark" style="font-size: 16px;">
+                                                    00<small style="font-size: 10px;">(tk)</small></h6>
+                                                <small class="text-dark">00(tk)
+                                                    total</small>
+                                            @endif
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-6 p-2 mb-2">
+                            <div class="card">
+                                <div class="card-body" style="padding: 10px;">
+                                    <div class="d-flex" style="justify-content:space-between">
+                                        <div class="d-flex" style="justify-content:space-between">
+                                            <a href="#" class="pr-2" style="margin-top: 0px;">
+                                                <p class="mb-0"
+                                                    style="font-size: 30px;border: none;border-radius: 50%;padding: 6px;width: 70px;margin: 0;margin-right: 10px;padding-left: 8px;">
+                                                    <img src="{{ asset('public/deposit.png') }}"
+                                                        style="width: 100%;">
+                                                </p>
+                                            </a>
+                                            <div>
+                                                <h4 class="m-0 text-dark"
+                                                    style="text-transform: uppercase;font-weight: bold;font-size: 16px;">
+                                                    Deposit Interest</h4>
+                                                <small class="m-0 text-dark">Blance</small>
+                                            </div>
+                                        </div>
+                                        <div class="text-right">
+
+                                            @if (isset($fxd))
+                                                <h6 class="m-0 text-dark" style="font-size: 16px;">
+                                                    {{ number_format((float) $fxd->monthly_interest, 2, '.', '') }}<small
+                                                        style="font-size: 10px;">(tk)</small></h6>
+                                                <small
+                                                    class="text-dark">{{ number_format((float) $fxd->total_interest, 2, '.', '') * 0.1 }}(tk)
+                                                    total</small>
+                                            @else
+                                                <h6 class="m-0 text-dark" style="font-size: 16px;">
+                                                    00<small style="font-size: 10px;">(tk)</small></h6>
+                                                <small class="text-dark">00(tk)
+                                                    total</small>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>

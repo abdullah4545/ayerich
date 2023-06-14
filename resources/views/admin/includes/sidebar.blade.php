@@ -34,6 +34,11 @@
                         </a>
                     </li>
                     <li>
+                        <a href="{{ route('banks.index') }}">
+                            <span>Deposit Bank</span>
+                        </a>
+                    </li>
+                    <li>
                         <a href="{{ route('payments.index') }}">
                             <span>Payment</span>
                         </a>
